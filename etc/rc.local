@@ -1,0 +1,84 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+#
+#
+#
+#
+#
+# Copyright (C) Feb. 2012 Edgar Berdahl for the Satelite CCRMA project
+#
+# The above copyright notice including the copyright holders and this
+# permission notice shall be included in all copies, substantial
+# portions, or derivatives of the Software and Software portions.
+#
+# The end-user documentation included with the redistribution, if any,
+# must include the following acknowledgment: "This product includes
+# software developed in the course of the Satellite CCRMA project
+# (http://ccrma.stanford.edu/satellite/) and its contributors", in the
+# same place and form as other third-party acknowledgments. In
+# addition, this acknowledgment must appear in the software itself in
+# the same form and location as other such third-party acknowledgments.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation except subject to the additional
+# attribution requirements described beneath the copyright notice above.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the modified GNU General Public 
+# License along with this program.
+#
+#
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+
+
+
+
+
+
+
+# Stop the screen/projector from going blank when inactive
+setterm -blank 0
+cpufreq-set -g performance
+
+# Increment the number of recorded boot ups
+/home/ccrma/bin/increment-number-boots
+
+# Start monitoring the memory usage over time
+/home/ccrma/bin/log-memory-usage &
+
+swapoff -a
+
+# First delete the old log file (otherwise it just keeps appending)
+#rm /home/ccrma/on-startup/startup-log.txt &
+# Then run the startup script from within a screen shell so
+# that the text output gets logged.
+#sudo -H -E -u ccrma HOME=/home/ccrma screen -L /home/ccrma/on-startup/load_defau$
+#sudo -H -E -u ccrma screen -L /home/ccrma/on-startup/load_default_patch
+sudo -H -E -u ccrma /home/ccrma/on-startup/load_default_patch
+
+
+
+
+
+
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+exit 0
