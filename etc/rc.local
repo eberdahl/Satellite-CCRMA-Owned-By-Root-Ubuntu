@@ -53,11 +53,11 @@ sudo -H -E -u ccrma touch /var/lib/dhcpd/dhcpd.leases
 
 
 # Manually restart dhcpd now that the leases file has been created
-dhcpd
+dhcpd &
 #sleep 5
-#service hostapd start
+#service hostapd start &
 #sleep 35
-#service isc-dhcp-server start
+#service isc-dhcp-server start &
 
 
 
@@ -74,6 +74,14 @@ cpufreq-set -g performance
 
 swapoff -a
 
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+echo
 # First delete the old log file (otherwise it just keeps appending)
 #rm /home/ccrma/on-startup/startup-log.txt &
 # Then run the startup script from within a screen shell so
@@ -81,17 +89,12 @@ swapoff -a
 #sudo -H -E -u ccrma HOME=/home/ccrma screen -L /home/ccrma/on-startup/load_defau$
 #sudo -H -E -u ccrma screen -L /home/ccrma/on-startup/load_default_patch
 sudo -H -E -u ccrma /home/ccrma/on-startup/load_default_patch
+echo
 
 
 
 
 
 
-
-# Print the IP address
-_IP=$(hostname -I) || true
-if [ "$_IP" ]; then
-  printf "My IP address is %s\n" "$_IP"
-fi
 
 exit 0
