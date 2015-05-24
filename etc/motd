@@ -10,3 +10,7 @@ the Alexander von Humboldt Foundation, the TU Berlin, Chris Jubien, T.I., and
 the Satellite CCRMA user base.
 
 For more info: https://ccrma.stanford.edu/satellite
+
+
+If a default audio program is running, you can stop if by typing
+stop-default
