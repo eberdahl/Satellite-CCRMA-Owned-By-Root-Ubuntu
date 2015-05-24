@@ -1,0 +1,44 @@
+#!/bin/sh -e
+#
+# handle-remount.ro
+#
+#
+#
+#
+#
+#
+# Copyright (C) May 2015 Edgar Berdahl for the Satelite CCRMA project
+# Louisiana State University
+#
+# The above copyright notice including the copyright holders and this
+# permission notice shall be included in all copies, substantial
+# portions, or derivatives of the Software and Software portions.
+#
+# The end-user documentation included with the redistribution, if any,
+# must include the following acknowledgment: "This product includes
+# software developed in the course of the Satellite CCRMA project
+# (http://ccrma.stanford.edu/satellite/) and its contributors", in the
+# same place and form as other third-party acknowledgments. In
+# addition, this acknowledgment must appear in the software itself in
+# the same form and location as other such third-party acknowledgments.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation except subject to the additional
+# attribution requirements described beneath the copyright notice above.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the modified GNU General Public 
+# License along with this program.
+#
+#
+#
+# No commands need to be inserted here if operating with flash
+# writes disabled (i.e. in read-only mode).
+
+
+exit 0
