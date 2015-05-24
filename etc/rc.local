@@ -45,6 +45,19 @@
 
 
 
+/etc/handle-remount
+
+sudo -H -E -u ccrma touch /tmp/.Xauthority
+sudo -H -E -u ccrma touch /var/lib/dhcpd/dhcpd.leases
+
+
+
+# Manually restart dhcpd now that the leases file has been created
+dhcpd
+#sleep 5
+#service hostapd start
+#sleep 35
+#service isc-dhcp-server start
 
 
 
