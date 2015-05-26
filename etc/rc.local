@@ -85,7 +85,7 @@ fi
 
 
 # Automatically reboot the kit once every 8 hours
-/etc/reboot-occassionally &
+/etc/reboot-occasionally &
 
 
 
