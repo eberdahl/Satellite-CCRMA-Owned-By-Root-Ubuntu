@@ -1,7 +1,6 @@
 #!/bin/sh -e
 #
-# rc.local
-#
+# reboot-occasionally
 #
 #
 #
@@ -45,59 +44,10 @@
 
 
 
-/etc/handle-remount
-
-sudo -H -E -u ccrma touch /tmp/.Xauthority
-
-
-sudo -H -E -u ccrma touch /var/lib/dhcpd/dhcpd.leases || echo "dhcpd.leases is already there"
-
-
-
-# Manually restart dhcpd now that the leases file has been created
-dhcpd &
-#sleep 5
-#service hostapd start &
-#sleep 35
-#service isc-dhcp-server start &
-
-
-
-
-# Stop the screen/projector from going blank when inactive
-setterm -blank 0
-cpufreq-set -g performance
-
-# Increment the number of recorded boot ups
-/home/ccrma/bin/increment-number-boots
-
-# Start monitoring the memory usage over time
-/home/ccrma/bin/log-memory-usage &
-
-swapoff -a
-
-
-# Print the IP address
-_IP=$(hostname -I) || true
-if [ "$_IP" ]; then
-  printf "My IP address is %s\n" "$_IP"
-fi
-
-
 # Automatically reboot the kit once every 8 hours
-/etc/reboot-occassionally &
+sleep 28800
+reboot
 
-
-
-echo
-# First delete the old log file (otherwise it just keeps appending)
-#rm /home/ccrma/on-startup/startup-log.txt &
-# Then run the startup script from within a screen shell so
-# that the text output gets logged.
-#sudo -H -E -u ccrma HOME=/home/ccrma screen -L /home/ccrma/on-startup/load_defau$
-#sudo -H -E -u ccrma screen -L /home/ccrma/on-startup/load_default_patch
-sudo -H -E -u ccrma /home/ccrma/on-startup/load_default_patch &
-echo
 
 
 
