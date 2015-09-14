@@ -41,4 +41,7 @@
 # writes disabled (i.e. in read-only mode).
 
 
+#/etc/tmpfs-remap
+
+
 exit 0

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for i in `cat /etc/tmpfs-remap.list`; do
+	echo "Handling $i"
+	mkdir -p "/tmp/.sys/$i" &
+	ln -sf $i /tmp/.sys/$i &
+done
